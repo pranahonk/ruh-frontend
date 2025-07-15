@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Paper, 
-  TextField, 
-  Button, 
-  Typography, 
-  Box, 
+import {
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  Box,
   Grid,
   CircularProgress
 } from '@mui/material';
@@ -16,13 +16,13 @@ const ClientForm = () => {
   const isEditing = id !== 'new';
   const navigate = useNavigate();
   const { clients, loading, addClient, updateClient } = useAppContext();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: ''
   });
-  
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -42,21 +42,21 @@ const ClientForm = () => {
 
   const validate = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
-    
+
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -67,8 +67,8 @@ const ClientForm = () => {
       ...prev,
       [name]: value
     }));
-    
-    // Clear error when field is edited
+
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -79,11 +79,11 @@ const ClientForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
-    
+
     try {
       if (isEditing) {
         await updateClient(id, formData);
@@ -101,7 +101,7 @@ const ClientForm = () => {
       <Typography variant="h5" component="h2" gutterBottom>
         {isEditing ? 'Edit Client' : 'Add New Client'}
       </Typography>
-      
+
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -117,7 +117,7 @@ const ClientForm = () => {
               disabled={loading}
             />
           </Grid>
-          
+
           <Grid item xs={12}>
             <TextField
               required
@@ -132,7 +132,7 @@ const ClientForm = () => {
               disabled={loading}
             />
           </Grid>
-          
+
           <Grid item xs={12}>
             <TextField
               required
@@ -146,18 +146,18 @@ const ClientForm = () => {
               disabled={loading}
             />
           </Grid>
-          
+
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-            <Button 
-              variant="outlined" 
+            <Button
+              variant="outlined"
               onClick={() => navigate('/clients')}
               disabled={loading}
             >
               Cancel
             </Button>
-            <Button 
-              type="submit" 
-              variant="contained" 
+            <Button
+              type="submit"
+              variant="contained"
               color="primary"
               disabled={loading}
             >

@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Paper, 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead, 
-  TableRow,
-  TextField,
-  InputAdornment,
-  Typography,
-  Button,
-  Box,
-  CircularProgress
+import React, {useEffect, useState} from 'react';
+import {
+    Box,
+    Button,
+    CircularProgress,
+    InputAdornment,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../context/AppContext';
+import {useNavigate} from 'react-router-dom';
+import {useAppContext} from '../../context/AppContext';
 
 const ClientList = () => {
   const { clients, loading, fetchClients } = useAppContext();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  // Fetch clients only once when component mounts
+
   useEffect(() => {
     fetchClients();
   }, []);
 
-  const filteredClients = clients.filter(client => 
+  const filteredClients = clients.filter(client =>
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.phone.includes(searchTerm)
@@ -41,13 +41,14 @@ const ClientList = () => {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4" component="h1">
-          Clients
-        </Typography>
-        <Button 
-          variant="contained" 
-          color="primary" 
+      <Typography variant="h4" component="h1" gutterBottom>
+        Clients
+      </Typography>
+
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
           startIcon={<PersonAddIcon />}
           onClick={() => navigate('/clients/new')}
         >
@@ -89,9 +90,9 @@ const ClientList = () => {
             <TableBody>
               {filteredClients.length > 0 ? (
                 filteredClients.map((client) => (
-                  <TableRow 
-                    key={client.id} 
-                    hover 
+                  <TableRow
+                    key={client.id}
+                    hover
                     onClick={() => handleClientClick(client.id)}
                     sx={{ cursor: 'pointer' }}
                   >

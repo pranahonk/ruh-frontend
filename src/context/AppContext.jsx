@@ -109,14 +109,14 @@ export const AppProvider = ({ children }) => {
     setApiKeyState(key);
   };
 
-  // Only fetch data on initial load or when API key changes
+
   useEffect(() => {
-    // Only fetch if we have an API key
+
     if (apiKey) {
       fetchClients();
       fetchAppointments();
     }
-  }, [apiKey]); // Only dependency is apiKey - don't add fetchClients or fetchAppointments here
+  }, [apiKey]);
 
   return (
     <AppContext.Provider

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Paper, 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead, 
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
   TableRow,
   TextField,
   InputAdornment,
@@ -26,18 +26,18 @@ const AppointmentList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  // Fetch appointments only once when component mounts
+
   useEffect(() => {
     fetchAppointments();
   }, []);
 
-  const filteredAppointments = appointments.filter(appointment => 
+  const filteredAppointments = appointments.filter(appointment =>
     appointment.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.client_email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sort appointments by date (upcoming first)
-  const sortedAppointments = [...filteredAppointments].sort((a, b) => 
+
+  const sortedAppointments = [...filteredAppointments].sort((a, b) =>
     new Date(a.time) - new Date(b.time)
   );
 
@@ -55,9 +55,9 @@ const AppointmentList = () => {
         <Typography variant="h4" component="h1">
           Appointments
         </Typography>
-        <Button 
-          variant="contained" 
-          color="primary" 
+        <Button
+          variant="contained"
+          color="primary"
           startIcon={<AddIcon />}
           onClick={() => navigate('/appointments/new')}
         >
@@ -100,9 +100,9 @@ const AppointmentList = () => {
             <TableBody>
               {sortedAppointments.length > 0 ? (
                 sortedAppointments.map((appointment) => (
-                  <TableRow 
-                    key={appointment.id} 
-                    hover 
+                  <TableRow
+                    key={appointment.id}
+                    hover
                     onClick={() => handleAppointmentClick(appointment.id)}
                     sx={{ cursor: 'pointer' }}
                   >
@@ -112,8 +112,8 @@ const AppointmentList = () => {
                       {format(new Date(appointment.time), 'PPP p')}
                     </TableCell>
                     <TableCell>
-                      <Chip 
-                        label={isUpcoming(appointment.time) ? "Upcoming" : "Past"} 
+                      <Chip
+                        label={isUpcoming(appointment.time) ? "Upcoming" : "Past"}
                         color={isUpcoming(appointment.time) ? "primary" : "default"}
                         size="small"
                       />

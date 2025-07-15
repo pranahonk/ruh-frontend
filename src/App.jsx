@@ -2,20 +2,20 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import './App.css';
 
-// Context
+
 import { AppProvider } from './context/AppContext';
 
-// Layout
+
 import Layout from './components/Layout/Layout';
 
-// Pages
+
 import Dashboard from './components/Dashboard/Dashboard';
 import ClientList from './components/Clients/ClientList';
 import ClientForm from './components/Clients/ClientForm';
 import AppointmentList from './components/Appointments/AppointmentList';
 import AppointmentForm from './components/Appointments/AppointmentForm';
 
-// Create theme
+
 const theme = createTheme({
   palette: {
     primary: {

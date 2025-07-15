@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Paper, 
-  TextField, 
-  Button, 
-  Typography, 
-  Box, 
+import {
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  Box,
   Grid,
   CircularProgress,
   FormControl,
@@ -22,17 +22,19 @@ const AppointmentForm = () => {
   const isEditing = id !== 'new';
   const navigate = useNavigate();
   const { clients, appointments, loading, addAppointment, updateAppointment, fetchClients } = useAppContext();
-  
+
   const [formData, setFormData] = useState({
     client_id: '',
     time: format(new Date(), "yyyy-MM-dd'T'HH:mm")
   });
-  
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+
     fetchClients();
-    
+
+
     if (isEditing) {
       const appointment = appointments.find(a => a.id === id);
       if (appointment) {
@@ -44,21 +46,21 @@ const AppointmentForm = () => {
         navigate('/appointments');
       }
     }
-  }, [isEditing, id, appointments, navigate, fetchClients]);
+  }, [isEditing, id, appointments, navigate]); // Removed fetchClients from dependencies
 
   const validate = () => {
     const newErrors = {};
-    
+
     if (!formData.client_id) {
       newErrors.client_id = 'Client is required';
     }
-    
+
     if (!formData.time) {
       newErrors.time = 'Appointment time is required';
     } else if (new Date(formData.time) < new Date() && !isEditing) {
       newErrors.time = 'Appointment time cannot be in the past';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -69,8 +71,8 @@ const AppointmentForm = () => {
       ...prev,
       [name]: value
     }));
-    
-    // Clear error when field is edited
+
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -81,17 +83,17 @@ const AppointmentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
-    
+
     try {
       const appointmentData = {
         ...formData,
         time: new Date(formData.time).toISOString()
       };
-      
+
       if (isEditing) {
         await updateAppointment(id, appointmentData);
       } else {
@@ -108,7 +110,7 @@ const AppointmentForm = () => {
       <Typography variant="h5" component="h2" gutterBottom>
         {isEditing ? 'Edit Appointment' : 'Schedule New Appointment'}
       </Typography>
-      
+
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -132,7 +134,7 @@ const AppointmentForm = () => {
               {errors.client_id && <FormHelperText>{errors.client_id}</FormHelperText>}
             </FormControl>
           </Grid>
-          
+
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -147,18 +149,18 @@ const AppointmentForm = () => {
               disabled={loading}
             />
           </Grid>
-          
+
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-            <Button 
-              variant="outlined" 
+            <Button
+              variant="outlined"
               onClick={() => navigate('/appointments')}
               disabled={loading}
             >
               Cancel
             </Button>
-            <Button 
-              type="submit" 
-              variant="contained" 
+            <Button
+              type="submit"
+              variant="contained"
               color="primary"
               disabled={loading}
             >

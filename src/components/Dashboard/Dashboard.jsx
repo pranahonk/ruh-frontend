@@ -20,7 +20,6 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Only fetch data if it hasn't been loaded already
         if (!dataLoaded) {
             fetchClients();
             fetchAppointments();

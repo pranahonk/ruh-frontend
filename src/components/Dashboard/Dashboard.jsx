@@ -53,18 +53,9 @@ const Dashboard = () => {
                     {/* Upcoming Appointments */}
                     <Grid item xs={12} md={6}>
                         <Paper sx={{p: 3, height: '100%'}}>
-                            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2}}>
-                                <Typography variant="h6" component="h2">
-                                    Upcoming Appointments
-                                </Typography>
-                                <Button
-                                    variant="outlined"
-                                    size="small"
-                                    onClick={() => navigate('/appointments')}
-                                >
-                                    View All
-                                </Button>
-                            </Box>
+                            <Typography variant="h6" component="h2" sx={{mb: 2}}>
+                                Upcoming Appointments
+                            </Typography>
 
                             {upcomingAppointments.length > 0 ? (
                                 <List>
@@ -91,11 +82,11 @@ const Dashboard = () => {
 
                             <Box sx={{mt: 2, display: 'flex', justifyContent: 'center'}}>
                                 <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={() => navigate('/appointments/new')}
+                                    variant="outlined"
+                                    size="small"
+                                    onClick={() => navigate('/appointments')}
                                 >
-                                    Schedule New Appointment
+                                    View All Appointments
                                 </Button>
                             </Box>
                         </Paper>
@@ -104,18 +95,9 @@ const Dashboard = () => {
                     {/* Recent Clients */}
                     <Grid item xs={12} md={6}>
                         <Paper sx={{p: 3, height: '100%'}}>
-                            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2}}>
-                                <Typography variant="h6" component="h2">
-                                    Recent Clients
-                                </Typography>
-                                <Button
-                                    variant="outlined"
-                                    size="small"
-                                    onClick={() => navigate('/clients')}
-                                >
-                                    View All
-                                </Button>
-                            </Box>
+                            <Typography variant="h6" component="h2" sx={{mb: 2}}>
+                                Recent Clients
+                            </Typography>
 
                             {recentClients.length > 0 ? (
                                 <List>
@@ -142,70 +124,17 @@ const Dashboard = () => {
 
                             <Box sx={{mt: 2, display: 'flex', justifyContent: 'center'}}>
                                 <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={() => navigate('/clients/new')}
+                                    variant="outlined"
+                                    size="small"
+                                    onClick={() => navigate('/clients')}
                                 >
-                                    Add New Client
+                                    View All Clients
                                 </Button>
                             </Box>
                         </Paper>
                     </Grid>
 
-                    {/* Statistics */}
-                    <Grid item xs={12}>
-                        <Paper sx={{p: 3}}>
-                            <Typography variant="h6" component="h2" gutterBottom>
-                                Statistics
-                            </Typography>
-
-                            <Grid container spacing={3}>
-                                <Grid item xs={6} md={3}>
-                                    <Box sx={{textAlign: 'center'}}>
-                                        <Typography variant="h4" color="primary">
-                                            {clients.length}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Total Clients
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} md={3}>
-                                    <Box sx={{textAlign: 'center'}}>
-                                        <Typography variant="h4" color="primary">
-                                            {appointments.length}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Total Appointments
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} md={3}>
-                                    <Box sx={{textAlign: 'center'}}>
-                                        <Typography variant="h4" color="primary">
-                                            {upcomingAppointments.length}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Upcoming Appointments
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-
-                                <Grid item xs={6} md={3}>
-                                    <Box sx={{textAlign: 'center'}}>
-                                        <Typography variant="h4" color="primary">
-                                            {appointments.filter(a => new Date(a.time) < new Date()).length}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Past Appointments
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                        </Paper>
-                    </Grid>
+                    {/* Statistics section removed as requested */}
                 </Grid>
             )}
         </div>

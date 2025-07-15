@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://wellness-platform-api.fly.dev';
-const API_KEY = localStorage.getItem('apiKey') || import.meta.env.VITE_DEFAULT_API_KEY || '';
+const API_KEY = import.meta.env.VITE_DEFAULT_API_KEY;
 
 const api = axios.create({
   baseURL: API_URL,

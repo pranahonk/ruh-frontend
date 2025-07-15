@@ -18,13 +18,11 @@ export const setApiKey = (key) => {
 
 
 export const getClients = () => api.get('/api/clients');
-export const getClient = (id) => api.get(`/api/clients/${id}`);
 export const createClient = (data) => api.post('/api/clients', data);
 export const updateClient = (id, data) => api.put(`/api/clients/${id}`, data);
 
 
 export const getAppointments = () => api.get('/api/appointments');
-export const getAppointment = (id) => api.get(`/api/appointments/${id}`);
 export const createAppointment = (data) => api.post('/api/appointments', data);
 export const updateAppointment = (id, data) => api.put(`/api/appointments/${id}`, data);
 

@@ -22,7 +22,6 @@ const Dashboard = () => {
     useEffect(() => {
         fetchClients();
         fetchAppointments();
-
     }, []);
 
 

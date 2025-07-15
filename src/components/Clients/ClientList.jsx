@@ -20,14 +20,17 @@ import {useNavigate} from 'react-router-dom';
 import {useAppContext} from '../../context/AppContext';
 
 const ClientList = () => {
-  const { clients, loading, fetchClients } = useAppContext();
+  const { clients, loading, fetchClients, dataLoaded } = useAppContext();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    fetchClients();
-  }, []);
+    // Only fetch data if it hasn't been loaded already
+    if (!dataLoaded) {
+      fetchClients();
+    }
+  }, [dataLoaded]);
 
   const filteredClients = clients.filter(client =>
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

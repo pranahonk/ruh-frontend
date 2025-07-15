@@ -11,9 +11,10 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [apiKey, setApiKeyState] = useState(localStorage.getItem('apiKey') || '');
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   const fetchClients = async () => {
-    setLoading(true);
+    if (!dataLoaded) setLoading(true);
     try {
       const response = await api.getClients();
       setClients(response.data);
@@ -27,7 +28,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const fetchAppointments = async () => {
-    setLoading(true);
+    if (!dataLoaded) setLoading(true);
     try {
       const response = await api.getAppointments();
       setAppointments(response.data);
@@ -111,12 +112,17 @@ export const AppProvider = ({ children }) => {
 
 
   useEffect(() => {
-
     if (apiKey) {
-      fetchClients();
-      fetchAppointments();
+      const loadInitialData = async () => {
+        await Promise.all([fetchClients(), fetchAppointments()]);
+        setDataLoaded(true);
+      };
+      
+      if (!dataLoaded) {
+        loadInitialData();
+      }
     }
-  }, [apiKey]);
+  }, [apiKey, dataLoaded]);
 
   return (
     <AppContext.Provider
@@ -126,6 +132,7 @@ export const AppProvider = ({ children }) => {
         loading,
         error,
         apiKey,
+        dataLoaded,
         setApiKey,
         fetchClients,
         fetchAppointments,

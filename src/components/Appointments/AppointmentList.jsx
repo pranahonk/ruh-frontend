@@ -22,14 +22,17 @@ import { useAppContext } from '../../context/AppContext';
 import { format } from 'date-fns';
 
 const AppointmentList = () => {
-  const { appointments, loading, fetchAppointments } = useAppContext();
+  const { appointments, loading, fetchAppointments, dataLoaded } = useAppContext();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    fetchAppointments();
-  }, []);
+    // Only fetch data if it hasn't been loaded already
+    if (!dataLoaded) {
+      fetchAppointments();
+    }
+  }, [dataLoaded]);
 
   const filteredAppointments = appointments.filter(appointment =>
     appointment.client_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||

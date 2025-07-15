@@ -16,13 +16,16 @@ import {useAppContext} from '../../context/AppContext';
 import {format} from 'date-fns';
 
 const Dashboard = () => {
-    const {clients, appointments, loading, fetchClients, fetchAppointments} = useAppContext();
+    const {clients, appointments, loading, fetchClients, fetchAppointments, dataLoaded} = useAppContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchClients();
-        fetchAppointments();
-    }, []);
+        // Only fetch data if it hasn't been loaded already
+        if (!dataLoaded) {
+            fetchClients();
+            fetchAppointments();
+        }
+    }, [dataLoaded]);
 
 
     const upcomingAppointments = appointments

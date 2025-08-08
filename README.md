@@ -1,38 +1,23 @@
-# Ruh Platform Frontend
+# 🏛️ Archived Repository
 
-A modern React frontend for the Ruh Platform API, providing client and appointment management functionality with a clean, responsive UI. This application has been optimized for performance by centralizing API calls and deployed to Fly.io.
+> **Note**
+> This repository has been archived and is no longer maintained. It was created solely for company testing purposes and is no longer in active development.
 
-## Live Demo
+## Project Overview
+This was a React frontend application for a wellness platform, used for internal company testing. The application is no longer maintained.
 
-Visit the live application at: [https://ruh-frontend-app.fly.dev/](https://ruh-frontend-app.fly.dev/)
+## Status
+🔒 **Archived** - This repository is read-only and no longer accepting updates or contributions.
 
-## Tech Stack
-
-- **React 19**: Frontend library
-- **Vite**: Build tool for faster development and optimized production builds
-- **Material UI 7**: Component library for modern UI design
-- **React Router v6**: Navigation and routing
-- **Axios**: HTTP client for API requests
-- **React Context API**: For centralized state management
-- **ESLint with react-refresh**: For code quality and improved hot reloading
-- **Docker**: Multi-stage build for optimized deployment
-- **Nginx**: Web server for serving the static files
-- **Fly.io**: Cloud hosting platform
-
-## Features
-
-- **Client Management**: View, add, and edit client information
-- **Appointment Scheduling**: Schedule, view, and manage appointments
-- **Dashboard**: Overview of recent clients and upcoming appointments
-- **Search & Filter**: Find clients and appointments quickly
-- **Responsive Design**: Works on desktop and mobile devices
-- **Centralized API Calls**: Prevents duplicate API requests across components
-
-## Prerequisites
-
-- Node.js v20.0.0 or higher
-- npm v9.0.0 or higher
-- Ruh Platform API backend running
+## Technology Stack
+- React 19
+- Vite
+- Material UI 7
+- React Router v6
+- Axios
+- Docker
+- Nginx
+- Fly.io
 
 ## Installation
 
